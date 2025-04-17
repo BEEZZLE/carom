@@ -184,33 +184,3 @@ class Program
             Console.WriteLine(item.IsEquipped ? "장착했습니다." : "장착을 해제했습니다.");
         }
     }
-
-    static void ShopMenu()
-    {
-        Console.WriteLine("\n상점");
-        Console.WriteLine("필요한 아이템을 얻을 수 있는 상점입니다.\n");
-
-        Console.WriteLine($"[보유 골드]\n{player.Gold} G\n");
-
-        Console.WriteLine("[아이템 목록]");
-        int idx = 1;
-        foreach (var item in shopItems)
-        {
-            string priceOrStatus = item.IsPurchased ? "구매완료" : $"{item.Price} G";
-            Console.WriteLine($"- {item.Name} | {(item.Attack > 0 ? $"공격력 +{item.Attack}" : $"방어력 +{item.Defense}")} | {item.Description} | {priceOrStatus}");
-            idx++;
-        }
-
-        Console.WriteLine("\n1. 아이템 구매");
-        Console.WriteLine("0. 나가기");
-
-        Console.Write("\n원하시는 행동을 입력해주세요.\n>> ");
-        string input = Console.ReadLine();
-
-        if (input == "1")
-        {
-            ShopBuyMenu();
-        }
-    }
-
-   
