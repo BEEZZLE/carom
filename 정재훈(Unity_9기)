@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-// 아이템 클래스
 class Item
 {
     public string Name;
@@ -25,7 +24,6 @@ class Item
     }
 }
 
-// 플레이어 클래스
 class Player
 {
     public string Name;
@@ -65,12 +63,12 @@ class Program
         Console.WriteLine("스파르타 마을에 오신 여러분 환영합니다.");
         Console.WriteLine("이곳에서 던전으로 들어가기전 활동을 할 수 있습니다.\n");
 
-        player.Name = "Chad"; // 플레이어 이름 설정
+        player.Name = "Jaehun"; 
 
         InitializeShop();
         InitializeInventory();
 
-        // 메인 루프
+    
         while (true)
         {
             ShowMainMenu();
@@ -283,10 +281,5 @@ class Program
                 Console.WriteLine("Gold가 부족합니다.");
             }
         }
-    }
-
-    static void EnterDungeon()
-    {
-        Console.WriteLine("\n(던전 입장은 아직 구현 준비 중입니다.)");
     }
 }
