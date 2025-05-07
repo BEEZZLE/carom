@@ -2,9 +2,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 3f;
+    public float moveSpeed = 5f;
+    public float jumpForce = 10f;
+    private bool isGrounded;
     private Rigidbody2D rb;
-    private Vector2 input;
 
     void Start()
     {
@@ -13,12 +14,28 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        input.x = Input.GetAxisRaw("Horizontal");
-        input.y = Input.GetAxisRaw("Vertical");
+        float moveInput = Input.GetAxis("Horizontal");
+        rb.velocity = new Vector2(moveInput * moveSpeed, rb.velocity.y);
+
+        if (Input.GetButtonDown("Jump") && isGrounded)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        }
     }
 
-    void FixedUpdate()
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        rb.MovePosition(rb.position + input.normalized * speed * Time.fixedDeltaTime);
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = true;
+        }
+    }
+
+    void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = false;
+        }
     }
 }
